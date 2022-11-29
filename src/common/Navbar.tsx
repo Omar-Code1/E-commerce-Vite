@@ -172,7 +172,10 @@ const Navbar: React.FC<Props> = ({ changeSearchProduct }) => {
                 <Menu
                   anchorEl={anchorElCategoryMenu}
                   open={openCategoryMenu}
-                  onClose={handleCloseCategoryMenu}
+                  onClose={() => {
+                    handleCloseCategoryMenu();
+                    handleCloseNavMenu();
+                  }}
                   MenuListProps={{
                     'aria-labelledby': 'basic-button',
                   }}
