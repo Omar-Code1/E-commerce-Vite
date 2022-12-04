@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Button, Grid, Box, TextField, Typography, Stack } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { ProductContext } from '../../context/ProductProvider';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useForm } from '../../hooks/useForm';
+import { dbProducts } from '../../dbProducts';
+import { headphoneProduct, relojProduct } from '../../dbProducts';
 
 const initialState = {
   cardName: '',
@@ -19,7 +20,24 @@ const CheckoutPage: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const context = useContext(ProductContext);
+  const { id } = useParams();
+
+  const product = () => {
+    let product;
+    if (id == '7') {
+      product = relojProduct;
+      return product;
+    }
+    if (id == '8') {
+      product = headphoneProduct;
+      return product;
+    } else {
+      product = dbProducts.filter((item) => item.id == id)[0];
+      return product;
+    }
+  };
+
+  const { title, img } = product();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,12 +67,8 @@ const CheckoutPage: React.FC = () => {
           alignItems="center"
           justifyContent="center"
         >
-          <Box
-            component="img"
-            src={context!.product.img}
-            width={{ xs: '50%', md: '90%' }}
-          />
-          <Typography variant="h5">{context!.product.title}</Typography>
+          <Box component="img" src={img} width={{ xs: '50%', md: '90%' }} />
+          <Typography variant="h5">{title}</Typography>
         </Grid>
         {/* Checkout */}
         <Grid item xs={12} md={4} lg={6} p={{ xs: 1.5, md: 3 }}>

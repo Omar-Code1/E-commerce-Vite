@@ -4,6 +4,8 @@ import macbook1 from './images/macbook1.png';
 import macbook2 from './images/macbook2.png';
 import smash from './images/smash.png';
 import switchimg from './images/switch.png';
+import reloj from './images/reloj.png';
+import headphone from './images/audifonos.png';
 import { Product } from './type';
 
 export const dbProducts: Product[] = [
@@ -88,3 +90,29 @@ export const dbProducts: Product[] = [
     category: 'VideoGame',
   },
 ];
+
+export const relojProduct: Product = {
+  id: 7,
+  img: reloj,
+  title: 'Apple Watch',
+  prices: {
+    new: '3,000',
+    old: '6,000',
+  },
+  rating: 4,
+  description: 'The best Reloj of Apple',
+  category: 'Reloj',
+};
+
+export const headphoneProduct: Product = {
+  id: 8,
+  img: headphone,
+  title: 'Logitech Headphone',
+  prices: {
+    new: '1,500',
+    old: '3,000',
+  },
+  rating: 3,
+  description: 'The best Headphone of Logitech',
+  category: 'Headphone',
+};

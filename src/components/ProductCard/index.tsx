@@ -17,7 +17,6 @@ import { Product } from '../../type';
 import { useAppDispatch } from '../../redux/hooks';
 import { addToCart } from '../../redux/slices/cart.slice';
 import { useNavigate } from 'react-router-dom';
-import { ProductContext } from '../../context/ProductProvider';
 
 type Props = {
   product: Product;
@@ -37,8 +36,6 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
   const { id, title, description, img, prices, rating } = product;
 
   const dispatch = useAppDispatch();
-
-  const context = React.useContext(ProductContext);
 
   const navigate = useNavigate();
 
@@ -112,7 +109,6 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
                   variant="contained"
                   fullWidth
                   onClick={() => {
-                    context!.changeProduct(product);
                     navigate(`/Product/${id}`);
                   }}
                 >

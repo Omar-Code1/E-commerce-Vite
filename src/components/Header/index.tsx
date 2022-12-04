@@ -1,38 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Box, Grid, Typography, Stack, Link, Container } from '@mui/material';
-import reloj from '../../images/reloj.png';
-import headphone from '../../images/audifonos.png';
-import { ProductContext } from '../../context/ProductProvider';
+
 import { useNavigate } from 'react-router-dom';
-
-const relojProduct = {
-  id: 7,
-  img: reloj,
-  title: 'Apple Watch',
-  prices: {
-    new: '3,000',
-    old: '6,000',
-  },
-  rating: 4,
-  description: 'The best Reloj of Apple',
-  category: 'Reloj',
-};
-
-const headphoneProduct = {
-  id: 8,
-  img: headphone,
-  title: 'Logitech Headphone',
-  prices: {
-    new: '1,500',
-    old: '3,000',
-  },
-  rating: 3,
-  description: 'The best Headphone of Logitech',
-  category: 'Headphone',
-};
+import { headphoneProduct, relojProduct } from '../../dbProducts';
 
 export const Header: React.FC = () => {
-  const context = useContext(ProductContext);
   const navigate = useNavigate();
 
   return (
@@ -76,7 +48,6 @@ export const Header: React.FC = () => {
                   color="common.white"
                   sx={{ cursor: 'pointer' }}
                   onClick={() => {
-                    context!.changeProduct(relojProduct);
                     navigate(`/Product/${relojProduct.id}`);
                   }}
                 >
@@ -86,7 +57,7 @@ export const Header: React.FC = () => {
             </Grid>
             {/* img */}
             <Grid item xs={5}>
-              <img src={reloj} alt="reloj" width="100%" />
+              <img src={relojProduct.img} alt="reloj" width="100%" />
             </Grid>
           </Grid>
         </Box>
@@ -121,7 +92,6 @@ export const Header: React.FC = () => {
                   color="common.white"
                   sx={{ cursor: 'pointer' }}
                   onClick={() => {
-                    context!.changeProduct(headphoneProduct);
                     navigate(`/Product/${headphoneProduct.id}`);
                   }}
                 >
@@ -131,7 +101,7 @@ export const Header: React.FC = () => {
             </Grid>
             {/* img */}
             <Grid item xs={5} width={1}>
-              <img src={headphone} width="100%" alt="headphone" />
+              <img src={headphoneProduct.img} width="100%" alt="headphone" />
             </Grid>
           </Grid>
         </Box>

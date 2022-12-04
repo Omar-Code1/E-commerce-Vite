@@ -27,7 +27,6 @@ import { useAppDispatch, useAppSelector } from '../redux/hooks';
 import { removeToCart } from '../redux/slices/cart.slice';
 import { useNavigate } from 'react-router-dom';
 import { dbProducts } from '../dbProducts';
-import { ProductContext } from '../context/ProductProvider';
 
 const initialState = {
   searchProduct: '',
@@ -91,8 +90,6 @@ const Navbar: React.FC<Props> = ({ changeSearchProduct }) => {
   };
 
   /* End Category Menu  */
-
-  const context = React.useContext(ProductContext);
 
   const navigate = useNavigate();
 
@@ -351,7 +348,6 @@ const Navbar: React.FC<Props> = ({ changeSearchProduct }) => {
                           <IconButton
                             onClick={() => {
                               handleCloseCartMenu();
-                              context!.changeProduct(item);
                               navigate(`/Product/${item.id}`);
                             }}
                           >

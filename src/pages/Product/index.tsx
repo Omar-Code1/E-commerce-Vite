@@ -8,15 +8,29 @@ import {
   Rating,
   Button,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { ProductContext } from '../../context/ProductProvider';
+import { useNavigate, useParams } from 'react-router-dom';
+import { dbProducts, headphoneProduct, relojProduct } from '../../dbProducts';
 
 const ProductPage: React.FC = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
 
-  const context = React.useContext(ProductContext);
+  const product = () => {
+    let product;
+    if (id == '7') {
+      product = relojProduct;
+      return product;
+    }
+    if (id == '8') {
+      product = headphoneProduct;
+      return product;
+    } else {
+      product = dbProducts.filter((item) => item.id == id)[0];
+      return product;
+    }
+  };
 
-  const { img, title, prices, rating, description } = context!.product;
+  const { title, description, img, prices, rating } = product();
 
   return (
     <Container maxWidth="xl">
@@ -62,7 +76,9 @@ const ProductPage: React.FC = () => {
               <Button
                 fullWidth
                 variant="contained"
-                onClick={() => navigate('/Checkout')}
+                onClick={() => {
+                  navigate(`/Checkout/${id}`);
+                }}
               >
                 Go to checkout
               </Button>

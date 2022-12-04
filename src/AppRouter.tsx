@@ -39,7 +39,7 @@ const AppRouter: React.FC = () => {
         <Route path="Contacto" element={<ContactPage />} />
       </Route>
 
-      <Route path="/Checkout" element={<CheckoutPage />} />
+      <Route path="/Checkout/:id" element={<CheckoutPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
